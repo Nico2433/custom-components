@@ -1,8 +1,8 @@
-import type { InputType } from ".";
+import { InputType } from ".";
 
 // *-------------- RULES --------------* //
 
-interface InputsRules<T = string> {
+interface InputsRules<T extends InputType> {
   required?: string;
   maxLength?: {
     value: number;
@@ -16,11 +16,13 @@ interface InputsRules<T = string> {
     value: RegExp;
     message: string;
   };
-  validate?: (value: T) => boolean | string;
+  validate?: (value: ValueByType<T>) => boolean | string;
 }
 
-export type RulesType<T extends InputType> = T extends "file"
-  ? InputsRules<File>
+type ValueByType<T extends InputType> = T extends "select"
+  ? string | number
+  : T extends "file"
+  ? FileList
   : T extends "date" | "datetime-local"
-  ? InputsRules<Date>
-  : InputsRules;
+  ? string
+  : string;

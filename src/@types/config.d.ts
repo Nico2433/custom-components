@@ -1,4 +1,4 @@
-import type { RulesType } from ".";
+import type { InputsRules } from ".";
 
 export type InputType =
   | "text"
@@ -20,7 +20,7 @@ export interface InputConfig<T extends InputType = InputType> {
   type?: T;
   label?: string;
   placeholder?: string;
-  rules?: RulesType<T>;
+  rules?: InputsRules<T>;
   optionalBtn?: {
     label: string;
     onClick: (arg?: any) => Promise<void> | void;
