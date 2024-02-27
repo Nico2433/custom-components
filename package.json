@@ -1,6 +1,6 @@
 {
   "name": "@nico2433/custom-inputs",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Custom input package for personal FrontEnd projects",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
