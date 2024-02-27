@@ -1,8 +1,0 @@
-{
-  "plugins": ["@typescript-eslint"],
-  "rules": {
-    "@typescript-eslint/consistent-type-imports": "error",
-    "@typescript-eslint/no-unused-vars": ["warn"],
-    "semi": "warn"
-  }
-}
