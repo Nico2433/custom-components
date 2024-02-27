@@ -20,8 +20,8 @@
     "dist",
     "package.json",
     "package-lock.json",
-    "CHANGELOG",
-    "README"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "author": "nico2433",
   "license": "ISC",

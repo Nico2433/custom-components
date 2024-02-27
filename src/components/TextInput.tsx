@@ -9,14 +9,6 @@ export const TextInput: React.FC<Input> = ({
 }) => {
   const { type, label, placeholder, name, rules, optionalBtn } = config;
 
-  const inputClasses = `${inputClassName || ""} ${
-    errors && errors[name]
-      ? "border-2 border-red-500 focus:border-red-500"
-      : "border-none"
-  } p-1 text-black w-full shadow ${
-    optionalBtn ? "rounded-l" : "rounded"
-  } focus:ring-0`;
-
   const error = errors && errors[name];
 
   return (
@@ -24,7 +16,13 @@ export const TextInput: React.FC<Input> = ({
       {label}
       <div className="flex w-full">
         <input
-          className={inputClasses}
+          className={`${inputClassName || ""} ${
+            errors && errors[name]
+              ? "border-2 border-red-500 focus:border-red-500"
+              : "border-none"
+          } p-1 text-black w-full shadow ${
+            optionalBtn ? "rounded-l" : "rounded"
+          } focus:ring-0`}
           type={type ? type : "text"}
           placeholder={placeholder}
           {...register(name, rules)}

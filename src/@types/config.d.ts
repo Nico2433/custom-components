@@ -1,4 +1,4 @@
-import { RulesType } from ".";
+import type { RulesType } from ".";
 
 export type InputType =
   | "text"

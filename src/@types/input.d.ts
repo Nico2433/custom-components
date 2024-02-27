@@ -3,7 +3,7 @@ import type {
   FieldValues,
   UseFormRegister,
 } from "react-hook-form";
-import { InputConfig } from ".";
+import type { InputConfig } from ".";
 
 export interface Input {
   config: InputConfig;

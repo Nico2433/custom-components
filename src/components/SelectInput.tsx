@@ -9,12 +9,6 @@ export const SelectInput: React.FC<Input> = ({
 }) => {
   const { label, placeholder, name, rules, options } = config;
 
-  const inputClasses = `${inputClassName || ""} ${
-    errors && errors[name]
-      ? "border-2 border-red-500 focus:border-red-500"
-      : "border-none"
-  } p-1 text-black w-full shadow rounded form-select focus:ring-0`;
-
   const error = errors && errors[name];
 
   return (
@@ -22,7 +16,11 @@ export const SelectInput: React.FC<Input> = ({
       {label}
       <select
         defaultValue=""
-        className={inputClasses}
+        className={`${inputClassName || ""} ${
+          errors && errors[name]
+            ? "border-2 border-red-500 focus:border-red-500"
+            : "border-none"
+        } p-1 text-black w-full shadow rounded form-select focus:ring-0`}
         {...register(name, rules)}
       >
         <option value="" disabled>

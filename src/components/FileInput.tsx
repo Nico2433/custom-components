@@ -13,12 +13,6 @@ export const FileInput: React.FC<Input> = ({
   const fileRef = useRef<HTMLInputElement | null>(null);
   const { ref, ...rest } = register(name, rules);
 
-  const inputClasses = `${inputClassName || ""} ${
-    errors && errors[name]
-      ? "border-2 border-red-500 focus:border-red-500"
-      : "border-none"
-  } p-1 text-black w-full shadow rounded cursor-pointer focus:ring-0`;
-
   const error = errors && errors[name];
 
   return (
@@ -37,7 +31,11 @@ export const FileInput: React.FC<Input> = ({
         onClick={() => fileRef.current && fileRef.current.click()}
         type="button"
         value={placeholder}
-        className={inputClasses}
+        className={`${inputClassName || ""} ${
+          errors && errors[name]
+            ? "border-2 border-red-500 focus:border-red-500"
+            : "border-none"
+        } p-1 text-black w-full shadow rounded cursor-pointer focus:ring-0`}
       />
       {error && <p className="text-red-500">{String(error.message)}</p>}
     </label>
