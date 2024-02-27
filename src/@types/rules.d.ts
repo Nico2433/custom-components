@@ -2,7 +2,7 @@ import { InputType } from ".";
 
 // *-------------- RULES --------------* //
 
-interface InputsRules<T extends InputType> {
+export interface InputsRules<T extends InputType> {
   required?: string;
   maxLength?: {
     value: number;
