@@ -2,10 +2,11 @@
   "name": "@nico2433/custom-inputs",
   "version": "1.0.5",
   "description": "Custom input package for personal FrontEnd projects",
-  "main": "src/index.js",
-  "types": "src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "release": "standard-version && git push --follow-tags && npm publish"
+    "release": "standard-version && git push --follow-tags && npm publish",
+    "build": "tsup"
   },
   "repository": {
     "type": "git",
@@ -15,17 +16,33 @@
     "registry": "https://registry.npmjs.org",
     "access": "public"
   },
+  "files": [
+    "dist",
+    "package.json",
+    "package-lock.json",
+    "CHANGELOG",
+    "README"
+  ],
   "author": "nico2433",
   "license": "ISC",
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@types/node": "^20.11.20",
+    "@types/react": "^18.2.59",
+    "@types/react-dom": "^18.2.19",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.57.0",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "standard-version": "^9.5.0",
-    "typescript": "^5.3.3"
+    "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^7.1.0"
   },
   "dependencies": {
-    "@tailwindcss/forms": "^0.5.7",
-    "react-hook-form": "^7.50.1",
-    "tailwindcss": "^3.4.1"
+    "react-hook-form": "^7.50.1"
   },
   "bugs": {
     "url": "https://github.com/Nico2433/custom-inputs/issues"

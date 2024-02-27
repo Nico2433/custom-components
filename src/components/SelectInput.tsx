@@ -1,4 +1,6 @@
-export const SelectInput = ({
+import { Input } from "../@types";
+
+export const SelectInput: React.FC<Input> = ({
   config,
   register,
   errors,

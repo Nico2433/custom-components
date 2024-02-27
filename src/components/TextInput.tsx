@@ -1,4 +1,6 @@
-export const TextInput = ({
+import { Input } from "../@types";
+
+export const TextInput: React.FC<Input> = ({
   config,
   errors,
   register,

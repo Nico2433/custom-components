@@ -1,6 +1,7 @@
 import { useRef } from "react";
+import { Input } from "../@types";
 
-export const FileInput = ({
+export const FileInput: React.FC<Input> = ({
   config,
   errors,
   register,
@@ -9,7 +10,7 @@ export const FileInput = ({
 }) => {
   const { label, name, rules, placeholder } = config;
 
-  const fileRef = useRef(null);
+  const fileRef = useRef<HTMLInputElement | null>(null);
   const { ref, ...rest } = register(name, rules);
 
   const inputClasses = `${inputClassName || ""} ${

@@ -1,4 +1,6 @@
-export const DateInput = ({
+import { Input } from "../@types";
+
+export const DateInput: React.FC<Input> = ({
   config,
   errors,
   register,
