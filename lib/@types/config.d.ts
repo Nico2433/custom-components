@@ -23,7 +23,7 @@ export interface InputConfig<T extends InputType = InputType> {
   rules?: InputsRules<T>;
   optionalBtn?: {
     label: string;
-    onClick: (arg?: any) => Promise<void> | void;
+    onClick: (arg?: unknown) => Promise<void> | void;
   };
   options?: SelectInputOptions[];
 }

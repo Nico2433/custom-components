@@ -1,4 +1,4 @@
-import { InputType } from ".";
+import type { InputType } from ".";
 
 // *-------------- RULES --------------* //
 

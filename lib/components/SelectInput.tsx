@@ -1,4 +1,4 @@
-import { Input } from "../@types";
+import type { Input } from "../@types";
 
 export const SelectInput: React.FC<Input> = ({
   config,

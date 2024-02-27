@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Input } from "../@types";
+import type { Input } from "../@types";
 
 export const FileInput: React.FC<Input> = ({
   config,
