@@ -22,7 +22,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "release": "standard-version && git push --follow-tags && npm publish",
+    "release": "npm run build && standard-version && git push --follow-tags && npm publish",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
