@@ -1,4 +1,4 @@
-// *-------------- RULES --------------* //
+/* eslint-disable  @typescript-eslint/no-explicit-any */
 
 export interface InputsRules {
   required?: string;
@@ -14,5 +14,5 @@ export interface InputsRules {
     value: RegExp;
     message: string;
   };
-  validate?: (value: unknown) => boolean | string;
+  validate?: (value: any) => boolean | string;
 }

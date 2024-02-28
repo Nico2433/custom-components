@@ -1,3 +1,5 @@
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+
 import type { InputsRules } from ".";
 
 export type InputType =
@@ -23,7 +25,7 @@ export interface InputConfig<T extends InputType = InputType> {
   rules?: InputsRules;
   optionalBtn?: {
     label: string;
-    onClick: (arg?: unknown) => Promise<void> | void;
+    onClick: (arg?: any) => Promise<void> | void;
   };
   options?: SelectInputOptions[];
 }
