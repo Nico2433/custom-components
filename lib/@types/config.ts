@@ -15,7 +15,7 @@ export interface SelectInputOptions {
 
 // *-------------- CONFIG --------------* //
 
-export interface InputConfig<T extends InputType = InputType> {
+export interface InputConfig<T extends InputType> {
   name: string;
   type?: T;
   label?: string;

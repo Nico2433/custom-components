@@ -20,9 +20,9 @@ export interface InputsRules<T extends InputType> {
 }
 
 type ValueByType<T extends InputType> = T extends "select"
-  ? string | number
+  ? string
   : T extends "file"
   ? FileList
   : T extends "date" | "datetime-local"
-  ? string
+  ? Date
   : string;
