@@ -33,12 +33,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nico2433/custom-inputs.git"
+    "url": "git+https://github.com/Nico2433/custom-components.git"
   },
   "bugs": {
-    "url": "https://github.com/Nico2433/custom-inputs/issues"
+    "url": "https://github.com/Nico2433/custom-components/issues"
   },
-  "homepage": "https://github.com/Nico2433/custom-inputs#readme",
+  "homepage": "https://github.com/Nico2433/custom-components#readme",
   "dependencies": {
     "react-hook-form": "^7.50.1"
   },
