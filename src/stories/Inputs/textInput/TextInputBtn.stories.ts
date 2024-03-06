@@ -29,6 +29,6 @@ type Story = StoryObj<Input>;
 export const Primary: Story = {
   args: {
     config,
-    labelClass: "flex flex-col items-center",
+    labelClass: "flex flex-col items-center w-60",
   },
 };
