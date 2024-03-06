@@ -1,12 +1,13 @@
+import type { Input } from "@/@types";
 import { useRef } from "react";
-import type { Input } from "../@types";
 
-export const FileInput: React.FC<Input> = ({
+export const FileInput: React.FC<Readonly<Input>> = ({
   config,
   errors,
   register,
-  className,
-  inputClassName,
+  labelClass = "",
+  inputClass = "",
+  errorClass = "",
 }) => {
   const { label, name, rules, placeholder } = config;
 
@@ -15,8 +16,12 @@ export const FileInput: React.FC<Input> = ({
 
   const error = errors && errors[name];
 
+  const inputClasses = `${inputClass} ${
+    error ? "border-2 border-red-500 focus:border-red-500" : "border-none"
+  } p-1 w-full shadow rounded cursor-pointer focus:ring-0`;
+
   return (
-    <label className={className}>
+    <label className={labelClass}>
       {label}
       <input
         ref={(e) => {
@@ -31,13 +36,11 @@ export const FileInput: React.FC<Input> = ({
         onClick={() => fileRef.current && fileRef.current.click()}
         type="button"
         value={placeholder}
-        className={`${inputClassName || ""} ${
-          errors && errors[name]
-            ? "border-2 border-red-500 focus:border-red-500"
-            : "border-none"
-        } p-1 text-black w-full shadow rounded cursor-pointer focus:ring-0`}
+        className={inputClasses}
       />
-      {error && <p className="text-red-500">{String(error.message)}</p>}
+      {error && (
+        <p className={`${errorClass} text-red-500`}>{String(error.message)}</p>
+      )}
     </label>
   );
 };

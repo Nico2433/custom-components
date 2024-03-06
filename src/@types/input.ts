@@ -9,6 +9,7 @@ export interface Input {
   config: InputConfig;
   errors?: FieldErrors<FieldValues>;
   register: UseFormRegister<FieldValues>;
-  className?: string;
-  inputClassName?: string;
+  labelClass?: string;
+  inputClass?: string;
+  errorClass?: string;
 }

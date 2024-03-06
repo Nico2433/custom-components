@@ -1,26 +1,27 @@
-import type { Input } from "../@types";
+import type { Input } from "@/@types";
 
-export const SelectInput: React.FC<Input> = ({
+export const SelectInput: React.FC<Readonly<Input>> = ({
   config,
   register,
   errors,
-  className,
-  inputClassName,
+  labelClass = "",
+  inputClass = "",
+  errorClass = "",
 }) => {
   const { label, placeholder, name, rules, options } = config;
 
   const error = errors && errors[name];
 
+  const inputClasses = `${inputClass} ${
+    error ? "border-2 border-red-500 focus:border-red-500" : "border-none"
+  } p-1 w-full shadow rounded form-select focus:ring-0`;
+
   return (
-    <label className={className}>
+    <label className={labelClass}>
       {label}
       <select
         defaultValue=""
-        className={`${inputClassName || ""} ${
-          errors && errors[name]
-            ? "border-2 border-red-500 focus:border-red-500"
-            : "border-none"
-        } p-1 text-black w-full shadow rounded form-select focus:ring-0`}
+        className={inputClasses}
         {...register(name, rules)}
       >
         <option value="" disabled>
@@ -32,7 +33,9 @@ export const SelectInput: React.FC<Input> = ({
           </option>
         ))}
       </select>
-      {error && <p className="text-red-500">{String(error.message)}</p>}
+      {error && (
+        <p className={`${errorClass} text-red-500`}>{String(error.message)}</p>
+      )}
     </label>
   );
 };

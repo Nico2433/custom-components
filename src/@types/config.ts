@@ -25,6 +25,7 @@ export interface InputConfig<T extends InputType = InputType> {
   rules?: InputsRules;
   optionalBtn?: {
     label: string;
+    className?: string;
     onClick: (arg?: any) => Promise<void> | void;
   };
   options?: SelectInputOptions[];
