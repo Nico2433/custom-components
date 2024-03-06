@@ -1,4 +1,3 @@
-import React from "react";
 import { getDocDelimiterLimits, type DocDelimiterLimits } from "./limits";
 
 // *-------- THIS COMPONENT LIMITS PAGE BORDERS AND CENTERS CONTENT --------* //
