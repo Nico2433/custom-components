@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.16](https://github.com/Nico2433/custom-components/compare/v1.0.15...v1.0.16) (2024-03-07)
+
 ### [1.0.15](https://github.com/Nico2433/custom-inputs/compare/v1.0.14...v1.0.15) (2024-02-28)
 
 ### [1.0.14](https://github.com/Nico2433/custom-inputs/compare/v1.0.13...v1.0.14) (2024-02-28)
