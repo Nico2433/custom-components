@@ -1,8 +1,8 @@
 import { DocDelimiter } from "@/components";
 import { TextInput } from "@/components/inputs";
+import { useInputConfig } from "@/hooks";
 import { useState } from "react";
 import type { FieldValues } from "react-hook-form";
-import { useForm } from "react-hook-form";
 import type { InputStory } from "../../@types";
 
 const TextInputStory: React.FC<Readonly<InputStory>> = ({
@@ -11,11 +11,7 @@ const TextInputStory: React.FC<Readonly<InputStory>> = ({
   inputClass,
   errorClass,
 }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, errors } = useInputConfig([config]);
 
   const [value, setValue] = useState<string | null>(null);
 

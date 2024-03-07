@@ -1,30 +1,13 @@
-# React + TypeScript + Vite
+# Custom Components
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple package I created for personal use. It contains some components that can be useful. However, to use it correctly, you will need to add the package to Tailwind's configuration. Here's how to do it:
 
-Currently, two official plugins are available:
+1. **Add the package to Tailwind's configuration:**
+   To ensure that the package's styles integrate properly with Tailwind, add the package route to the content paths in your Tailwind configuration file. Use the following line and replace `{packageRoute}` with the appropriate route of the package:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+   ```javascript
+   content: ["{packageRoute}/**/*.{js,ts,jsx,tsx}"],
+   ```
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. **Further customization with CSS:**
+   If for any reason you cannot add the package to Tailwind's configuration, you can still customize the styles using standard CSS. Simply import the provided CSS file in your entry file (e.g., index.js or index.ts) to apply custom styles. Note that predefined styles, such as input field borders, may not be applied correctly if not integrated with [Tailwind](https://tailwindcss.com) and [TailwindForms](https://www.npmjs.com/package/@tailwindcss/forms).

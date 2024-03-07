@@ -2,13 +2,7 @@
 
 import type { InputsRules } from ".";
 
-export type InputType =
-  | "text"
-  | "password"
-  | "select"
-  | "file"
-  | "date"
-  | "datetime-local";
+export type InputType = "text" | "password" | "select" | "file" | "date";
 
 export interface SelectInputOptions {
   label: string;

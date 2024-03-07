@@ -14,7 +14,7 @@ export const SelectInput: React.FC<Readonly<Input>> = ({
 
   const inputClasses = `${inputClass} ${
     error ? "border-2 border-red-500 focus:border-red-500" : "border-none"
-  } p-1 w-full shadow rounded form-select focus:ring-0`;
+  } p-1 w-full shadow rounded focus:ring-0`;
 
   return (
     <label className={labelClass}>
