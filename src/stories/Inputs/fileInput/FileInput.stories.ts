@@ -24,7 +24,7 @@ type Story = StoryObj<Input>;
 export const Primary: Story = {
   args: {
     config,
-    labelClass: "flex flex-col items-center w-60",
+    className: "flex flex-col items-center w-60",
     inputClass: "bg-yellow-500 hover:opacity-50",
   },
 };

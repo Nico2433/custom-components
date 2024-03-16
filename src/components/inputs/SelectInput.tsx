@@ -1,23 +1,28 @@
 import type { Input } from "@/@types";
+import { clsx } from "clsx/lite";
 
 export const SelectInput: React.FC<Readonly<Input>> = ({
   config,
   register,
   errors,
-  labelClass = "",
-  inputClass = "",
-  errorClass = "",
+  className,
+  inputClass,
+  errorClass,
 }) => {
   const { label, placeholder, name, rules, options } = config;
 
   const error = errors && errors[name];
 
-  const inputClasses = `${inputClass} ${
+  const inputClasses = clsx(
+    "p-1 w-full shadow rounded focus:ring-0",
+    inputClass,
     error ? "border-2 border-red-500 focus:border-red-500" : "border-none"
-  } p-1 w-full shadow rounded focus:ring-0`;
+  );
+
+  const errorClasses = clsx("text-red-500", errorClass);
 
   return (
-    <label className={labelClass}>
+    <label className={className}>
       {label}
       <select
         defaultValue=""
@@ -33,9 +38,7 @@ export const SelectInput: React.FC<Readonly<Input>> = ({
           </option>
         ))}
       </select>
-      {error && (
-        <p className={`${errorClass} text-red-500`}>{String(error.message)}</p>
-      )}
+      {error && <p className={errorClasses}>{String(error.message)}</p>}
     </label>
   );
 };

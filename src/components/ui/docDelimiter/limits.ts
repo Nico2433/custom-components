@@ -1,6 +1,6 @@
-export type DocDelimiterLimits = "6xl" | "7xl" | "8xl";
+export type DocDelLimits = "6xl" | "7xl" | "8xl";
 
-export const getDocDelimiterLimits = (limit: DocDelimiterLimits) => {
+export const getDocLimits = (limit: DocDelLimits) => {
   switch (limit) {
     case "6xl": {
       return "max-w-6xl";

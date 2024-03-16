@@ -1,29 +1,42 @@
-import { getDocDelimiterLimits, type DocDelimiterLimits } from "./limits";
+import { clsx } from "clsx/lite";
+import React from "react";
+import { getDocLimits, type DocDelLimits } from "./limits";
 
 // *-------- THIS COMPONENT LIMITS PAGE BORDERS AND CENTERS CONTENT --------* //
 
 interface Props {
   as?: React.ElementType;
   className?: string;
-  containerClass?: string;
-  limits?: DocDelimiterLimits;
+  limits?: DocDelLimits;
   children: React.ReactNode;
 }
 
 export const DocDelimiter: React.FC<Readonly<Props>> = ({
   as: Element = "div",
   className = "flex",
-  containerClass = "",
-  limits,
+  limits = "8xl",
   children,
 }) => {
+  const childProps = (child: React.ReactElement) => {
+    const childClasses = child.props.className;
+    const totalClasses = clsx("container", childClasses);
+
+    return { className: totalClasses };
+  };
+
+  const elementClasses = clsx(
+    "justify-center mx-auto w-full",
+    className,
+    getDocLimits(limits)
+  );
+
   return (
-    <Element
-      className={`justify-center mx-auto w-full ${className} ${
-        limits && getDocDelimiterLimits(limits)
-      }`}
-    >
-      <div className={`container ${containerClass}`}>{children}</div>
+    <Element className={elementClasses}>
+      {React.Children.map(children, (child) =>
+        React.isValidElement(child)
+          ? React.cloneElement(child, childProps(child))
+          : child
+      )}
     </Element>
   );
 };

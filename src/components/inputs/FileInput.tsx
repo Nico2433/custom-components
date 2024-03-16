@@ -1,13 +1,14 @@
 import type { Input } from "@/@types";
+import { clsx } from "clsx/lite";
 import { useRef } from "react";
 
 export const FileInput: React.FC<Readonly<Input>> = ({
   config,
   errors,
   register,
-  labelClass = "",
-  inputClass = "",
-  errorClass = "",
+  className,
+  inputClass,
+  errorClass,
 }) => {
   const { label, name, rules, placeholder } = config;
 
@@ -16,12 +17,16 @@ export const FileInput: React.FC<Readonly<Input>> = ({
 
   const error = errors && errors[name];
 
-  const inputClasses = `${inputClass} ${
+  const inputClasses = clsx(
+    "p-1 w-full shadow rounded cursor-pointer focus:ring-0",
+    inputClass,
     error ? "border-2 border-red-500 focus:border-red-500" : "border-none"
-  } p-1 w-full shadow rounded cursor-pointer focus:ring-0`;
+  );
+
+  const errorClasses = clsx("text-red-500", errorClass);
 
   return (
-    <label className={labelClass}>
+    <label className={className}>
       {label}
       <input
         ref={(e) => {
@@ -38,9 +43,7 @@ export const FileInput: React.FC<Readonly<Input>> = ({
         value={placeholder}
         className={inputClasses}
       />
-      {error && (
-        <p className={`${errorClass} text-red-500`}>{String(error.message)}</p>
-      )}
+      {error && <p className={errorClasses}>{String(error.message)}</p>}
     </label>
   );
 };

@@ -1,23 +1,29 @@
 import type { Input } from "@/@types";
+import { clsx } from "clsx/lite";
 
 export const TextInput: React.FC<Readonly<Input>> = ({
   config,
   errors,
   register,
-  labelClass = "",
-  inputClass = "",
-  errorClass = "",
+  className,
+  inputClass,
+  errorClass,
 }) => {
   const { type, label, placeholder, name, rules, optionalBtn } = config;
 
   const error = errors && errors[name];
 
-  const inputClasses = `${inputClass} ${
-    error ? "border-2 border-red-500 focus:border-red-500" : "border-none"
-  } p-1 w-full shadow ${optionalBtn ? "rounded-l" : "rounded"} focus:ring-0`;
+  const inputClasses = clsx(
+    "p-1 w-full shadow focus:ring-0",
+    inputClass,
+    error ? "border-2 border-red-500 focus:border-red-500" : "border-none",
+    optionalBtn ? "rounded-l" : "rounded"
+  );
+
+  const errorClasses = clsx("text-red-500", errorClass);
 
   return (
-    <label className={labelClass}>
+    <label className={className}>
       {label}
       <div className="flex w-full">
         <input
@@ -38,9 +44,7 @@ export const TextInput: React.FC<Readonly<Input>> = ({
           </button>
         )}
       </div>
-      {error && (
-        <p className={`${errorClass} text-red-500`}>{String(error.message)}</p>
-      )}
+      {error && <p className={errorClasses}>{String(error.message)}</p>}
     </label>
   );
 };

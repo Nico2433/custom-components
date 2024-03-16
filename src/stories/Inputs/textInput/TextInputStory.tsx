@@ -1,9 +1,7 @@
-import { DocDelimiter } from "@/components";
-import { TextInput } from "@/components/inputs";
-import { useInputConfig } from "@/hooks";
+import { DocDelimiter, TextInput } from "@/components";
+import type { InputStory } from "@/stories/@types";
 import { useState } from "react";
-import type { FieldValues } from "react-hook-form";
-import type { InputStory } from "../../@types";
+import { useForm, type FieldValues } from "react-hook-form";
 
 const TextInputStory: React.FC<Readonly<InputStory>> = ({
   config,
@@ -11,7 +9,11 @@ const TextInputStory: React.FC<Readonly<InputStory>> = ({
   inputClass,
   errorClass,
 }) => {
-  const { register, handleSubmit, errors } = useInputConfig([config]);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const [value, setValue] = useState<string | null>(null);
 
@@ -20,24 +22,26 @@ const TextInputStory: React.FC<Readonly<InputStory>> = ({
   };
 
   return (
-    <DocDelimiter containerClass="flex items-center justify-center min-h-screen">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-center gap-3"
-      >
-        <TextInput
-          register={register}
-          errors={errors}
-          config={config}
-          labelClass={labelClass}
-          inputClass={inputClass}
-          errorClass={errorClass}
-        />
-        {value && <p>{value}</p>}
-        <button className="bg-blue-500 rounded py-1 px-2 hover:opacity-50">
-          Submit
-        </button>
-      </form>
+    <DocDelimiter>
+      <div className="flex items-center justify-center min-h-screen">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col items-center gap-3"
+        >
+          <TextInput
+            register={register}
+            errors={errors}
+            config={config}
+            className={labelClass}
+            inputClass={inputClass}
+            errorClass={errorClass}
+          />
+          {value && <p>{value}</p>}
+          <button className="bg-blue-500 rounded py-1 px-2 hover:opacity-50">
+            Submit
+          </button>
+        </form>
+      </div>
     </DocDelimiter>
   );
 };
