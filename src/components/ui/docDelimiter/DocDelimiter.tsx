@@ -1,19 +1,25 @@
 import { clsx } from "clsx/lite";
 import React from "react";
-import { getDocLimits, type DocDelLimits } from "./limits";
+import { getDocLimits, type DocDelLimit } from "./limits";
 
 // *-------- THIS COMPONENT LIMITS PAGE BORDERS AND CENTERS CONTENT --------* //
 
 interface Props {
   as?: React.ElementType;
   className?: string;
-  limits?: DocDelLimits;
+  hide?: boolean;
+  hideMobile?: boolean;
+  hideDesktop?: boolean;
+  limits?: DocDelLimit;
   children: React.ReactNode;
 }
 
 export const DocDelimiter: React.FC<Readonly<Props>> = ({
   as: Element = "div",
-  className = "flex",
+  className,
+  hide,
+  hideMobile,
+  hideDesktop,
   limits = "8xl",
   children,
 }) => {
@@ -25,6 +31,13 @@ export const DocDelimiter: React.FC<Readonly<Props>> = ({
   };
 
   const elementClasses = clsx(
+    hide
+      ? "hidden"
+      : hideMobile || hideDesktop
+      ? hideMobile
+        ? "hidden lg:flex"
+        : "flex lg:hidden"
+      : "flex",
     "justify-center mx-auto w-full",
     className,
     getDocLimits(limits)
