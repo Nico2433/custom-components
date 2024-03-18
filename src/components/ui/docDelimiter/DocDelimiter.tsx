@@ -38,9 +38,8 @@ export const DocDelimiter: React.FC<Readonly<Props>> = ({
         ? "hidden lg:flex"
         : "flex lg:hidden"
       : "flex",
-    "justify-center mx-auto w-full",
-    className,
-    getDocLimits(limits)
+    !hide && `flex-col items-center mx-auto w-full ${getDocLimits(limits)}`,
+    className
   );
 
   return (
