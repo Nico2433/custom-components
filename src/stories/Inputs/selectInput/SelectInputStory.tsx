@@ -1,23 +1,31 @@
+import type { InputConfig } from "@/@types";
 import { DocDelimiter, SelectInput } from "@/components";
-import type { InputStory } from "@/stories/@types";
 import { useState } from "react";
 import { useForm, type FieldValues } from "react-hook-form";
 
-const SelectInputStory: React.FC<Readonly<InputStory>> = ({
-  config,
-  labelClass,
-  inputClass,
-  errorClass,
-}) => {
+const SelectInputStory: React.FC = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [value, setValue] = useState<string | null>(null);
+
+  const [preview, setPreview] = useState<string | null>(null);
+
+  const config: InputConfig = {
+    name: "selectInput",
+    label: "Select Input",
+    registerOptions: { required: "Input is required" },
+    selectOptions: [
+      {
+        label: "Option test",
+        value: "Value 1",
+      },
+    ],
+  };
 
   const onSubmit = (values: FieldValues) => {
-    setValue(values.selectInput);
+    setPreview(values.selectInput);
   };
 
   return (
@@ -31,11 +39,9 @@ const SelectInputStory: React.FC<Readonly<InputStory>> = ({
             register={register}
             errors={errors}
             config={config}
-            className={labelClass}
-            inputClass={inputClass}
-            errorClass={errorClass}
+            className="flex flex-col items-center w-60"
           />
-          {value && <p>{value}</p>}
+          {preview && <p>{preview}</p>}
           <button className="bg-blue-500 rounded py-1 px-2 hover:opacity-50">
             Submit
           </button>

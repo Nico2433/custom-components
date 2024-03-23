@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
-import type { Input, InputConfig } from "@/@types";
-import DateInputStory from "./DateInputStory";
+import DateInputStory from "./DateInputStory.js";
 
 const meta: Meta<typeof DateInputStory> = {
   title: "Date Input",
@@ -10,19 +8,8 @@ const meta: Meta<typeof DateInputStory> = {
 
 export default meta;
 
-const config: InputConfig = {
-  name: "dateInput",
-  label: "Date Input",
-  rules: {
-    required: "Input is required",
-  },
-};
-
-type Story = StoryObj<Input>;
+type Story = StoryObj;
 
 export const Primary: Story = {
-  args: {
-    config,
-    className: "flex flex-col items-center w-60",
-  },
+  args: {},
 };

@@ -6,26 +6,33 @@ export const DateInput: React.FC<Readonly<Input>> = ({
   errors,
   register,
   className,
-  inputClass,
-  errorClass,
+  inputClassName,
+  errorClassName,
 }) => {
-  const { label, name, rules } = config;
-  errors?.password;
+  const { label, name, registerOptions } = config;
 
   const error = errors && errors[name];
 
+  // *-------------------- CLASS NAMES --------------------* //
+
   const inputClasses = clsx(
     "p-1 w-full shadow rounded focus:ring-0",
-    inputClass,
+    inputClassName,
     error ? "border-2 border-red-500 focus:border-red-500" : "border-none"
   );
 
-  const errorClasses = clsx("text-red-500", errorClass);
+  const errorClasses = clsx("text-red-500", errorClassName);
+
+  // *-------------------- INPUT --------------------* //
 
   return (
     <label className={className}>
       {label}
-      <input type="date" className={inputClasses} {...register(name, rules)} />
+      <input
+        type="date"
+        className={inputClasses}
+        {...register(name, registerOptions)}
+      />
       {error && <p className={errorClasses}>{String(error.message)}</p>}
     </label>
   );

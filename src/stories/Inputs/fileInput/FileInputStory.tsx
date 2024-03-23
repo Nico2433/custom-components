@@ -1,27 +1,33 @@
-import { DocDelimiter, FileInput } from "@/components";
-import type { InputStory } from "@/stories/@types";
+import type { InputConfig } from "@/@types";
+import { DocDelimiter, FileDropInput, FileInput } from "@/components";
 import { useState } from "react";
 import { useForm, type FieldValues } from "react-hook-form";
 
-const FileInputStory: React.FC<Readonly<InputStory>> = ({
-  config,
-  labelClass,
-  inputClass,
-  errorClass,
-}) => {
+interface FileInputStory {
+  fileDrop?: boolean;
+}
+
+const FileInputStory: React.FC<Readonly<FileInputStory>> = ({ fileDrop }) => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm();
 
-  const [value, setValue] = useState<File | null>(null);
+  const [preview, setPreview] = useState<File | null>(null);
+
+  const config: InputConfig = {
+    name: "fileInput",
+    label: "File Input",
+    placeholder: "Select a file",
+    registerOptions: { required: "This field is required" },
+  };
 
   const onSubmit = (values: FieldValues) => {
-    const fileInput: FileList = values.fileInput;
-    const file = fileInput.item(0);
+    const fileInput: File[] = values.fileInput;
 
-    setValue(file);
+    setPreview(fileInput[0]);
   };
 
   return (
@@ -31,15 +37,25 @@ const FileInputStory: React.FC<Readonly<InputStory>> = ({
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col items-center gap-3"
         >
-          <FileInput
-            register={register}
-            errors={errors}
-            config={config}
-            className={labelClass}
-            inputClass={inputClass}
-            errorClass={errorClass}
-          />
-          {value && <p>{value.name}</p>}
+          {fileDrop ? (
+            <FileDropInput
+              control={control}
+              errors={errors}
+              config={config}
+              className="flex flex-col items-center w-60"
+              inputClassName="w-52 h-52 bg-yellow-500 hover:opacity-50"
+            />
+          ) : (
+            <FileInput
+              register={register}
+              errors={errors}
+              config={config}
+              className="flex flex-col items-center w-60"
+              inputClassName="bg-yellow-500 hover:opacity-50"
+            />
+          )}
+
+          {preview && <p>{preview.name}</p>}
           <button className="bg-blue-500 rounded py-1 px-2 hover:opacity-50">
             Submit
           </button>

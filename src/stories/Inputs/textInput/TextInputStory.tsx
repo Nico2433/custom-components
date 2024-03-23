@@ -1,24 +1,45 @@
+import type { InputConfig } from "@/@types";
 import { DocDelimiter, TextInput } from "@/components";
-import type { InputStory } from "@/stories/@types";
 import { useState } from "react";
 import { useForm, type FieldValues } from "react-hook-form";
 
-const TextInputStory: React.FC<Readonly<InputStory>> = ({
-  config,
-  labelClass,
-  inputClass,
-  errorClass,
-}) => {
+interface TextInputStory {
+  addBtn?: boolean;
+}
+
+const TextInputStory: React.FC<TextInputStory> = ({ addBtn }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const [value, setValue] = useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+  const [btnPreview, setBtnPreview] = useState<string | null>(null);
+
+  const config: InputConfig = {
+    name: "textInput",
+    label: "Text Input",
+    registerOptions: {
+      required: "Input is required",
+    },
+  };
+
+  const configBtn: InputConfig = {
+    name: "textInput",
+    label: "Text Input",
+    registerOptions: {
+      required: "Input is required",
+    },
+    addBtn: {
+      label: "Button",
+      className: "",
+      onClick: () => setBtnPreview("You clicked me"),
+    },
+  };
 
   const onSubmit = (values: FieldValues) => {
-    setValue(values.textInput);
+    setPreview(values.textInput);
   };
 
   return (
@@ -28,15 +49,24 @@ const TextInputStory: React.FC<Readonly<InputStory>> = ({
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col items-center gap-3"
         >
-          <TextInput
-            register={register}
-            errors={errors}
-            config={config}
-            className={labelClass}
-            inputClass={inputClass}
-            errorClass={errorClass}
-          />
-          {value && <p>{value}</p>}
+          {addBtn ? (
+            <TextInput
+              register={register}
+              errors={errors}
+              config={configBtn}
+              className="flex flex-col items-center w-60"
+            />
+          ) : (
+            <TextInput
+              register={register}
+              errors={errors}
+              config={config}
+              className="flex flex-col items-center w-60"
+            />
+          )}
+
+          {preview && <p>{preview}</p>}
+          {btnPreview && <p>{btnPreview}</p>}
           <button className="bg-blue-500 rounded py-1 px-2 hover:opacity-50">
             Submit
           </button>

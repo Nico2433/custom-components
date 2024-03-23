@@ -24,13 +24,13 @@ export const DocDelimiter: React.FC<Readonly<Props>> = ({
   children,
 }) => {
   const childProps = (child: React.ReactElement) => {
-    const childClasses = child.props.className;
-    const totalClasses = clsx("container", childClasses);
+    const childClassNames = child.props.className;
+    const totalClassNames = clsx("container", childClassNames);
 
-    return { className: totalClasses };
+    return { className: totalClassNames };
   };
 
-  const elementClasses = clsx(
+  const elementClassNames = clsx(
     hide
       ? "hidden"
       : hideMobile || hideDesktop
@@ -43,7 +43,7 @@ export const DocDelimiter: React.FC<Readonly<Props>> = ({
   );
 
   return (
-    <Element className={elementClasses}>
+    <Element className={elementClassNames}>
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
           ? React.cloneElement(child, childProps(child))
