@@ -10,6 +10,6 @@ export interface Input {
   errors?: FieldErrors<FieldValues>;
   register: UseFormRegister<FieldValues>;
   className?: string;
-  inputClass?: string;
-  errorClass?: string;
+  inputClassName?: string;
+  errorClassName?: string;
 }

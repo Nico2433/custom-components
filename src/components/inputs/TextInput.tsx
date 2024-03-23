@@ -6,21 +6,27 @@ export const TextInput: React.FC<Readonly<Input>> = ({
   errors,
   register,
   className,
-  inputClass,
-  errorClass,
+  inputClassName,
+  errorClassName,
 }) => {
-  const { type, label, placeholder, name, rules, optionalBtn } = config;
+  const { type, label, placeholder, name, registerOptions, addBtn } = config;
 
   const error = errors && errors[name];
 
+  // *-------------------- CLASS NAMES --------------------* //
+
   const inputClasses = clsx(
     "p-1 w-full shadow focus:ring-0",
-    inputClass,
+    inputClassName,
     error ? "border-2 border-red-500 focus:border-red-500" : "border-none",
-    optionalBtn ? "rounded-l" : "rounded"
+    addBtn ? "rounded-l" : "rounded"
   );
 
-  const errorClasses = clsx("text-red-500", errorClass);
+  const errorClasses = clsx("text-red-500", errorClassName);
+
+  const btnClassName = clsx("py-1 px-2 rounded-r shadow", addBtn?.className);
+
+  // *-------------------- INPUT --------------------* //
 
   return (
     <label className={className}>
@@ -30,17 +36,15 @@ export const TextInput: React.FC<Readonly<Input>> = ({
           className={inputClasses}
           type={type ? type : "text"}
           placeholder={placeholder}
-          {...register(name, rules)}
+          {...register(name, registerOptions)}
         />
-        {optionalBtn && (
+        {addBtn && (
           <button
             type="button"
-            className={`${
-              optionalBtn.className || ""
-            } py-1 px-2 rounded-r shadow`}
-            onClick={optionalBtn.onClick}
+            className={btnClassName}
+            onClick={addBtn.onClick}
           >
-            {optionalBtn.label}
+            {addBtn.label}
           </button>
         )}
       </div>

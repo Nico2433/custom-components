@@ -1,6 +1,6 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 
-import type { InputsRules } from ".";
+import type { RegisterOptions } from "react-hook-form";
 
 export type InputType = "text" | "password" | "select" | "file" | "date";
 
@@ -11,16 +11,16 @@ export interface SelectInputOptions {
 
 // *-------------- CONFIG --------------* //
 
-export interface InputConfig<T extends InputType = InputType> {
+export interface InputConfig {
   name: string;
-  type?: T;
+  type?: InputType;
   label?: string;
   placeholder?: string;
-  rules?: InputsRules;
-  optionalBtn?: {
+  registerOptions?: RegisterOptions;
+  addBtn?: {
     label: string;
     className?: string;
-    onClick: (arg?: any) => Promise<void> | void;
+    onClick: (arg?: any) => any;
   };
-  options?: SelectInputOptions[];
+  selectOptions?: SelectInputOptions[];
 }
