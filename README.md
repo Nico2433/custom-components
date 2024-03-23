@@ -6,7 +6,7 @@ This is a simple package I created for personal use. It contains some components
    To ensure that the package's styles integrate properly, add the package css to your index file:
 
    ```javascript
-   import "@nico2433/custom-components/dist/style.css";
+   import "@nico2433/custom-components/index.css";
    ```
 
 2. **Further customization with CSS:**
@@ -20,6 +20,7 @@ This is a simple package I created for personal use. It contains some components
 1. **Inputs:**
    DateInput
    FileInput
+   FileDropInput
    SelectInput
    TextInput
 
@@ -33,41 +34,27 @@ This is a simple package I created for personal use. It contains some components
 ```javascript
 type InputType = "text" | "password" | "select" | "file" | "date";
 
-interface InputsRules {
-  required?: string;
-  maxLength?: {
-    value: number;
-    message: string;
-  };
-  minLength?: {
-    value: number;
-    message: string;
-  };
-  pattern?: {
-    value: RegExp;
-    message: string;
-  };
-  validate?: (value: any) => boolean | string;
+interface SelectInputOptions {
+  label: string;
+  value: string;
 }
 
-interface InputConfig<T extends InputType = InputType> {
+interface InputConfig {
   name: string;
-  type?: T;
+  type?: InputType;
   label?: string;
   placeholder?: string;
-  rules?: InputsRules;
-  optionalBtn?: {
-    label: string;
-    className?: string;
-    onClick: (arg?: any) => Promise<void> | void;
+  registerOptions?: RegisterOptions;
+  addBtn?: {
+    label: string,
+    className?: string,
+    onClick: (arg?: any) => any,
   };
-  options?: SelectInputOptions[];
+  selectOptions?: SelectInputOptions[];
 }
 ```
 
 ```javascript
-import type { InputConfig } from "@nico2433/custom-components";
-
 const useExampleFormConfig = () => {
   const {
     register,
@@ -78,13 +65,13 @@ const useExampleFormConfig = () => {
   const fields: InputConfig[] = [
     {
       name: "example1",
-      rules: {
+      registerOptions: {
         required: "This field is required",
       },
     },
     {
       name: "example2",
-      rules: {
+      registerOptions: {
          maxLength: {
             value: 10;
             message: "This field accepts a max length of 10";
@@ -99,15 +86,9 @@ const useExampleFormConfig = () => {
 
   return { fields, register, handleSubmit, errors }
 };
-
-export default useExampleFormConfig
 ```
 
 ```javascript
-import type { FieldValues } from "react-hook-form";
-import useExampleFormConfig from "your path";
-import { TextInput } from "@nico2433/custom-components";
-
 const Component = () => {
   const { fields, register, handleSubmit, errors } = useExampleFormConfig();
 
