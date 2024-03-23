@@ -3,7 +3,7 @@
   "author": "nico2433",
   "license": "MIT",
   "description": "Custom components package for personal FrontEnd projects",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "type": "module",
   "main": "dist/src/index.cjs",
   "module": "dist/src/index.js",
