@@ -20,7 +20,7 @@ export const DocDelimiter: React.FC<Readonly<Props>> = ({
   hide,
   hideMobile,
   hideDesktop,
-  limits = "8xl",
+  limits = "full",
   children,
 }) => {
   const childProps = (child: React.ReactElement) => {
@@ -34,10 +34,10 @@ export const DocDelimiter: React.FC<Readonly<Props>> = ({
     hide
       ? "hidden"
       : hideMobile || hideDesktop
-      ? hideMobile
-        ? "hidden lg:flex"
-        : "flex lg:hidden"
-      : "flex",
+        ? hideMobile
+          ? "hidden lg:flex"
+          : "flex lg:hidden"
+        : "flex",
     !hide && `flex-col items-center mx-auto w-full ${getDocLimits(limits)}`,
     className
   );

@@ -1,4 +1,4 @@
-export type DocDelLimit = "6xl" | "7xl" | "8xl";
+export type DocDelLimit = "6xl" | "7xl" | "full";
 
 export const getDocLimits = (limit: DocDelLimit) => {
   switch (limit) {
@@ -11,7 +11,7 @@ export const getDocLimits = (limit: DocDelLimit) => {
     }
 
     default: {
-      return "max-w-8xl";
+      return "max-w-full";
     }
   }
 };
