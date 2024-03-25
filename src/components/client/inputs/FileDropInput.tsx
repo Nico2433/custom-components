@@ -1,5 +1,3 @@
-"use client";
-
 import type { Input } from "@/@types";
 import { clsx } from "clsx/lite";
 import type { ChangeEvent, DragEvent } from "react";

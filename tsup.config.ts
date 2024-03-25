@@ -5,7 +5,7 @@ export default defineConfig({
   minify: true,
   sourcemap: true,
   treeshake: true,
-  splitting: false,
+  splitting: true,
   clean: true,
   outDir: "dist/",
   entry: ["src/**", "!src/stories", "!src/components/index.ts"],

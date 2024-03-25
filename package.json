@@ -3,11 +3,11 @@
   "author": "nico2433",
   "license": "MIT",
   "description": "Custom components package for personal FrontEnd projects",
-  "version": "1.0.27",
+  "version": "1.0.19",
   "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts"
@@ -35,9 +35,10 @@
     "./index.css": "./dist/index.css"
   },
   "scripts": {
-    "build": "tsup && npm run build:clear:empty && npm run build:clear:types",
+    "build": "tsup && npm run build:clear:empty && npm run build:clear:types && npm run build:clear:index",
     "build:clear:empty": "find dist -type d -empty -delete",
     "build:clear:types": "find dist/@types -type f -name '*.js*' -delete && find 'dist/@types' -type f -name '*.cjs*' -delete",
+    "build:clear:index": "cd dist && rm -rf index.js index.js.map index.cjs index.cjs.map",
     "release": "npm run build && standard-version && git push --follow-tags && npm publish",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "storybook": "storybook dev -p 6006",
