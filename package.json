@@ -5,33 +5,38 @@
   "description": "Custom components package for personal FrontEnd projects",
   "version": "1.0.19",
   "type": "module",
-  "main": "dist/src/index.cjs",
-  "module": "dist/src/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/src/index.js",
-      "require": "./dist/src/index.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./inputs": {
-      "import": "./dist/src/components/inputs/index.js",
-      "require": "./dist/src/components/inputs/index.cjs",
-      "types": "./dist/components/inputs/index.d.ts"
+    "./client": {
+      "import": "./dist/components/client/index.js",
+      "require": "./dist/components/client/index.cjs",
+      "types": "./dist/components/client/index.d.ts"
     },
-    "./ui": {
-      "import": "./dist/src/components/ui/index.js",
-      "require": "./dist/src/components/ui/index.cjs",
-      "types": "./dist/components/ui/index.d.ts"
+    "./client/inputs": {
+      "import": "./dist/components/client/inputs/index.js",
+      "require": "./dist/components/client/inputs/index.cjs",
+      "types": "./dist/components/client/inputs/index.d.ts"
     },
-    "./index.css": "./dist/src/index.css"
+    "./general": {
+      "import": "./dist/components/general/index.js",
+      "require": "./dist/components/general/index.cjs",
+      "types": "./dist/components/general/index.d.ts"
+    },
+    "./general/ui": {
+      "import": "./dist/components/general/ui/index.js",
+      "require": "./dist/components/general/ui/index.cjs",
+      "types": "./dist/components/general/ui/index.d.ts"
+    },
+    "./index.css": "./dist/index.css"
   },
   "scripts": {
-    "build": "tsup && npm run post:build",
-    "post:build": "rm -rf dist/src/@types && find dist -type d -empty -delete",
+    "build": "tsup && npm run build:clear:empty && npm run build:clear:types && npm run build:clear:index",
+    "build:clear:empty": "find dist -type d -empty -delete",
+    "build:clear:types": "find dist/@types -type f -name '*.js*' -delete && find 'dist/@types' -type f -name '*.cjs*' -delete",
+    "build:clear:index": "cd dist && rm -rf index.js index.js.map index.cjs index.cjs.map",
     "release": "npm run build && standard-version && git push --follow-tags && npm publish",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "storybook": "storybook dev -p 6006",
@@ -88,5 +93,6 @@
     "typescript-eslint": "^7.3.1",
     "vite": "^5.2.3",
     "vite-tsconfig-paths": "^4.3.2"
-  }
+  },
+  "dependencies": {}
 }
