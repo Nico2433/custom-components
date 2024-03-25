@@ -1,15 +1,13 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  splitting: false,
-  clean: true,
-  sourcemap: true,
   dts: true,
   minify: true,
-  entry: ["src/**", "!src/stories"],
-  format: ["cjs", "esm"],
+  sourcemap: true,
+  treeshake: true,
+  splitting: true,
+  clean: true,
   outDir: "dist/",
-  esbuildOptions(options, context) {
-    options.outbase = "./";
-  },
+  entry: ["src/**", "!src/stories", "!src/components/index.ts"],
+  format: ["cjs", "esm"],
 });

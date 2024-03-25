@@ -1,2 +1,2 @@
-export * from "./inputs";
-export * from "./ui";
+export * from "./client";
+export * from "./general";
