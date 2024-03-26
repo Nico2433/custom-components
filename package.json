@@ -27,6 +27,11 @@
       "require": "./dist/components/client/inputs/index.cjs",
       "types": "./dist/components/client/inputs/index.d.ts"
     },
+    "./client/dropdowns": {
+      "import": "./dist/components/client/dropdowns/index.js",
+      "require": "./dist/components/client/dropdowns/index.cjs",
+      "types": "./dist/components/client/dropdowns/index.d.ts"
+    },
     "./general": {
       "import": "./dist/components/general/index.js",
       "require": "./dist/components/general/index.cjs",
