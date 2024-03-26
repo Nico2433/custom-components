@@ -19,11 +19,13 @@ const DropdownStory: React.FC<DropdownStory> = ({
           hideChildren={hideChildren}
           autoClose={autoClose}
           position={position}
-          trigger={
-            <button className="bg-red-500 px-4 py-2 rounded hover:opacity-75">
-              Open dropdown
-            </button>
-          }
+          renderTrigger={() => {
+            return (
+              <button className="bg-red-500 px-4 py-2 rounded hover:opacity-75">
+                Open dropdown
+              </button>
+            );
+          }}
         >
           <div className="bg-yellow-500 w-max rounded px-4 py-2">
             This is a dropdown

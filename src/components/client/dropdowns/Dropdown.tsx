@@ -3,7 +3,7 @@ import clsx from "clsx/lite";
 import React from "react";
 
 interface Props {
-  trigger: React.ReactNode;
+  renderTrigger: (isOpen: boolean) => React.ReactNode;
   children: React.ReactNode;
   className?: string;
   hideChildren?: boolean;
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const Dropdown: React.FC<Readonly<Props>> = ({
-  trigger,
+  renderTrigger,
   children,
   className,
   hideChildren,
@@ -81,6 +81,8 @@ export const Dropdown: React.FC<Readonly<Props>> = ({
         : "flex-row-reverse",
     className
   );
+
+  const trigger = renderTrigger(isOpen);
 
   return (
     <div ref={containerRef} className={containerClasses}>
