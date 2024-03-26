@@ -1,5 +1,3 @@
-/* eslint-disable  @typescript-eslint/no-explicit-any */
-
 import type { RegisterOptions } from "react-hook-form";
 
 export type InputType = "text" | "password" | "select" | "file" | "date";
