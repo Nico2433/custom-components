@@ -1,4 +1,5 @@
 import type { DropdownPosition } from "@/@types";
+import { cloneComponent } from "@/utils";
 import clsx from "clsx/lite";
 import React from "react";
 
@@ -40,19 +41,12 @@ export const Dropdown: React.FC<Readonly<Props>> = ({
     }
   }, [autoClose]);
 
-  const triggerProps = (trigger: React.ReactElement) => {
-    const triggerClassNames = trigger.props.className;
-    const totalClassNames = clsx(triggerClassNames);
-
-    return {
-      onClick: () => setIsOpen((prev) => !prev),
-      className: totalClassNames,
-    };
+  const triggerProps = {
+    onClick: () => setIsOpen((prev) => !prev),
   };
 
-  const childProps = (children: React.ReactElement) => {
-    const childClassNames = children.props.className;
-    const totalClassNames = clsx(
+  const childProps = {
+    className: clsx(
       "absolute",
       hideChildren && !isOpen && "hidden",
       position === "bottom" || position === "top"
@@ -61,16 +55,11 @@ export const Dropdown: React.FC<Readonly<Props>> = ({
           : "bottom-full"
         : position === "right"
           ? "left-full"
-          : "right-full",
-      childClassNames
-    );
-
-    return {
-      className: totalClassNames,
-    };
+          : "right-full"
+    ),
   };
 
-  const containerClasses = clsx(
+  const containerClassName = clsx(
     "flex items-center relative",
     position === "bottom" || position === "top"
       ? position === "bottom"
@@ -85,21 +74,15 @@ export const Dropdown: React.FC<Readonly<Props>> = ({
   const trigger = renderTrigger(isOpen);
 
   return (
-    <div ref={containerRef} className={containerClasses}>
-      {React.isValidElement(trigger)
-        ? React.cloneElement(trigger, triggerProps(trigger))
-        : trigger}
+    <div ref={containerRef} className={containerClassName}>
+      {cloneComponent(trigger, triggerProps)}
       {hideChildren
         ? React.Children.map(children, (child) =>
-            React.isValidElement(child)
-              ? React.cloneElement(child, childProps(child))
-              : child
+            cloneComponent(child, childProps)
           )
         : isOpen &&
           React.Children.map(children, (child) =>
-            React.isValidElement(child)
-              ? React.cloneElement(child, childProps(child))
-              : child
+            cloneComponent(child, childProps)
           )}
     </div>
   );

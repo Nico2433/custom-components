@@ -1,3 +1,4 @@
+import { cloneComponent } from "@/utils";
 import { clsx } from "clsx/lite";
 import React from "react";
 import { getDocLimits, type DocDelLimit } from "./limits";
@@ -23,11 +24,8 @@ export const DocDelimiter: React.FC<Readonly<Props>> = ({
   limits = "full",
   children,
 }) => {
-  const childProps = (child: React.ReactElement) => {
-    const childClassNames = child.props.className;
-    const totalClassNames = clsx("container", childClassNames);
-
-    return { className: totalClassNames };
+  const childProps = {
+    className: "container",
   };
 
   const elementClassNames = clsx(
@@ -45,9 +43,7 @@ export const DocDelimiter: React.FC<Readonly<Props>> = ({
   return (
     <Element className={elementClassNames}>
       {React.Children.map(children, (child) =>
-        React.isValidElement(child)
-          ? React.cloneElement(child, childProps(child))
-          : child
+        cloneComponent(child, childProps)
       )}
     </Element>
   );

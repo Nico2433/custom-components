@@ -44,7 +44,6 @@
     },
     "./index.css": "./dist/index.css"
   },
-  "typesVersions": {},
   "scripts": {
     "build": "tsup && pnpm build:clear:empty && pnpm build:clear:types",
     "build:clear:empty": "find dist -type d -empty -delete",
