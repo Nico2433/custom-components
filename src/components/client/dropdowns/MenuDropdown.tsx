@@ -41,7 +41,7 @@ export const MenuDropdown: React.FC<Readonly<Props>> = ({
     onClick: () => setIsOpen((prev) => !prev),
   };
 
-  const menuProps = {
+  const contentProps = {
     className: clsx("absolute"),
   };
 
@@ -53,7 +53,7 @@ export const MenuDropdown: React.FC<Readonly<Props>> = ({
   return (
     <div ref={containerRef} className={containerClassName}>
       {cloneComponent(trigger, triggerProps)}
-      {cloneComponent(content, menuProps)}
+      {cloneComponent(content, contentProps)}
     </div>
   );
 };
