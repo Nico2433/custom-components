@@ -4,48 +4,26 @@
   "license": "MIT",
   "description": "Custom components package for personal FrontEnd projects",
   "version": "1.0.32",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
   "files": [
     "dist"
   ],
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
-    },
     "./client": {
       "import": "./dist/components/client/index.js",
       "require": "./dist/components/client/index.cjs",
       "types": "./dist/components/client/index.d.ts"
-    },
-    "./client/inputs": {
-      "import": "./dist/components/client/inputs/index.js",
-      "require": "./dist/components/client/inputs/index.cjs",
-      "types": "./dist/components/client/inputs/index.d.ts"
-    },
-    "./client/dropdowns": {
-      "import": "./dist/components/client/dropdowns/index.js",
-      "require": "./dist/components/client/dropdowns/index.cjs",
-      "types": "./dist/components/client/dropdowns/index.d.ts"
     },
     "./general": {
       "import": "./dist/components/general/index.js",
       "require": "./dist/components/general/index.cjs",
       "types": "./dist/components/general/index.d.ts"
     },
-    "./general/ui": {
-      "import": "./dist/components/general/ui/index.js",
-      "require": "./dist/components/general/ui/index.cjs",
-      "types": "./dist/components/general/ui/index.d.ts"
-    },
     "./index.css": "./dist/index.css"
   },
   "scripts": {
-    "build": "tsup && pnpm build:clear:empty && pnpm build:clear:types",
+    "build": "tsup && pnpm build:clear:empty && pnpm build:clear:types && pnpm build:clear:index",
     "build:clear:empty": "find dist -type d -empty -delete",
     "build:clear:types": "find dist/@types -type f -name '*.js*' -delete && find 'dist/@types' -type f -name '*.cjs*' -delete",
     "build:clear:index": "cd dist && rm -rf index.js index.js.map index.cjs index.cjs.map",

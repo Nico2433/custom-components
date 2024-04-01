@@ -8,6 +8,6 @@ export default defineConfig({
   splitting: true,
   clean: true,
   outDir: "dist/",
-  entry: ["src/**", "!src/stories"],
+  entry: ["src/**", "!src/components/(index).ts?(x)", "!src/stories"],
   format: ["cjs", "esm"],
 });
