@@ -4,12 +4,14 @@
   "license": "MIT",
   "description": "Custom components package for personal FrontEnd projects",
   "version": "1.0.35",
-  "types": "./dist/index.d.ts",
   "type": "module",
   "files": [
     "dist"
   ],
   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts"
+    },
     "./client": {
       "import": "./dist/components/client/index.js",
       "require": "./dist/components/client/index.cjs",
