@@ -6,7 +6,6 @@ import React from "react";
 interface Props {
   renderTrigger: (isOpen: boolean) => React.ReactNode;
   children: React.ReactNode;
-  className?: string;
   hideChildren?: boolean;
   autoClose?: boolean;
   position?: DropdownPosition;
@@ -15,7 +14,6 @@ interface Props {
 export const Dropdown: React.FC<Readonly<Props>> = ({
   renderTrigger,
   children,
-  className,
   hideChildren,
   autoClose,
   position = "bottom",
@@ -67,8 +65,7 @@ export const Dropdown: React.FC<Readonly<Props>> = ({
         : "flex-col-reverse"
       : position === "right"
         ? "flex-row"
-        : "flex-row-reverse",
-    className
+        : "flex-row-reverse"
   );
 
   const trigger = renderTrigger(isOpen);
