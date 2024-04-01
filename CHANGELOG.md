@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.36](https://github.com/Nico2433/custom-components/compare/v1.0.35...v1.0.36) (2024-04-01)
+
 ### [1.0.35](https://github.com/Nico2433/custom-components/compare/v1.0.33...v1.0.35) (2024-04-01)
 
 ### [1.0.33](https://github.com/Nico2433/custom-components/compare/v1.0.32...v1.0.33) (2024-03-26)
