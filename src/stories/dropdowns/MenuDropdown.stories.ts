@@ -12,7 +12,6 @@ type Story = StoryObj<MenuDropdownStory>;
 
 export const Primary: Story = {
   args: {
-    hideChildren: false,
     autoClose: true,
   },
 };

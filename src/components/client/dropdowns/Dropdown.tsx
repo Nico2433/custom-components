@@ -1,20 +1,17 @@
-import type { DropdownPosition } from "@/@types";
+import type { DropdownComponent, DropdownPosition } from "@/@types";
 import { cloneComponent } from "@/utils";
 import clsx from "clsx/lite";
 import React from "react";
 
-interface Props {
-  renderTrigger: (isOpen: boolean) => React.ReactNode;
-  children: React.ReactNode;
-  hideChildren?: boolean;
-  autoClose?: boolean;
+interface Props extends DropdownComponent {
+  renderContent: (isOpen: boolean) => React.ReactNode;
   position?: DropdownPosition;
 }
 
 export const Dropdown: React.FC<Readonly<Props>> = ({
   renderTrigger,
-  children,
-  hideChildren,
+  renderContent,
+  className,
   autoClose,
   position = "bottom",
 }) => {
@@ -43,10 +40,9 @@ export const Dropdown: React.FC<Readonly<Props>> = ({
     onClick: () => setIsOpen((prev) => !prev),
   };
 
-  const childProps = {
+  const contentProps = {
     className: clsx(
       "absolute",
-      hideChildren && !isOpen && "hidden",
       position === "bottom" || position === "top"
         ? position === "bottom"
           ? "top-full"
@@ -65,22 +61,17 @@ export const Dropdown: React.FC<Readonly<Props>> = ({
         : "flex-col-reverse"
       : position === "right"
         ? "flex-row"
-        : "flex-row-reverse"
+        : "flex-row-reverse",
+    className
   );
 
   const trigger = renderTrigger(isOpen);
+  const content = renderContent(isOpen);
 
   return (
     <div ref={containerRef} className={containerClassName}>
       {cloneComponent(trigger, triggerProps)}
-      {hideChildren
-        ? React.Children.map(children, (child) =>
-            cloneComponent(child, childProps)
-          )
-        : isOpen &&
-          React.Children.map(children, (child) =>
-            cloneComponent(child, childProps)
-          )}
+      {cloneComponent(content, contentProps)}
     </div>
   );
 };

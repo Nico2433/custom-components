@@ -1,7 +1,7 @@
-import type { Input } from "@/@types";
+import type { InputComponent } from "@/@types";
 import { clsx } from "clsx/lite";
 
-export const DateInput: React.FC<Readonly<Input>> = ({
+export const DateInput: React.FC<Readonly<InputComponent>> = ({
   config,
   errors,
   register,

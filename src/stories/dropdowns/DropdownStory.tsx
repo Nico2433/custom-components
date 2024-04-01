@@ -2,21 +2,15 @@ import type { DropdownPosition } from "@/@types";
 import { DocDelimiter, Dropdown } from "@/components";
 
 interface DropdownStory {
-  hideChildren: boolean;
   autoClose: boolean;
   position: DropdownPosition;
 }
 
-const DropdownStory: React.FC<DropdownStory> = ({
-  hideChildren,
-  autoClose,
-  position,
-}) => {
+const DropdownStory: React.FC<DropdownStory> = ({ autoClose, position }) => {
   return (
     <DocDelimiter>
       <div className="flex items-center justify-center min-h-screen">
         <Dropdown
-          hideChildren={hideChildren}
           autoClose={autoClose}
           position={position}
           renderTrigger={() => {
@@ -26,11 +20,14 @@ const DropdownStory: React.FC<DropdownStory> = ({
               </button>
             );
           }}
-        >
-          <div className="bg-yellow-500 w-max rounded px-4 py-2">
-            This is a dropdown
-          </div>
-        </Dropdown>
+          renderContent={(isOpen) => (
+            <div
+              className={`${isOpen ? "block" : "hidden"} bg-yellow-500 w-max rounded px-4 py-2`}
+            >
+              This is a dropdown
+            </div>
+          )}
+        ></Dropdown>
       </div>
     </DocDelimiter>
   );

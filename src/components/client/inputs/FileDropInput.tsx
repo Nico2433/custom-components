@@ -1,10 +1,10 @@
-import type { Input } from "@/@types";
+import type { InputComponent } from "@/@types";
 import { clsx } from "clsx/lite";
 import type { ChangeEvent, DragEvent } from "react";
 import type { Control } from "react-hook-form";
 import { Controller } from "react-hook-form";
 
-interface FileDropInput extends Omit<Input, "register"> {
+interface FileDropInput extends Omit<InputComponent, "register"> {
   control: Control<any>;
 }
 

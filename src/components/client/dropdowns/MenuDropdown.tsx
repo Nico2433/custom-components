@@ -1,20 +1,19 @@
+import type { DropdownComponent } from "@/@types";
 import { cloneComponent } from "@/utils";
 import clsx from "clsx/lite";
 import React from "react";
 
-interface Props {
-  renderTrigger: (isOpen: boolean) => React.ReactNode;
-  renderMenu: (
+interface Props extends DropdownComponent {
+  renderContent: (
+    isOpen: boolean,
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   ) => React.ReactNode;
-  hideChildren?: boolean;
-  autoClose?: boolean;
 }
 
-const MenuDropdown: React.FC<Props> = ({
+export const MenuDropdown: React.FC<Readonly<Props>> = ({
   renderTrigger,
-  renderMenu,
-  hideChildren,
+  renderContent,
+  className,
   autoClose,
 }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -43,20 +42,18 @@ const MenuDropdown: React.FC<Props> = ({
   };
 
   const menuProps = {
-    className: clsx("absolute", hideChildren && !isOpen && "hidden"),
+    className: clsx("absolute"),
   };
 
+  const containerClassName = clsx(className);
+
   const trigger = renderTrigger(isOpen);
-  const menu = renderMenu(setIsOpen);
+  const content = renderContent(isOpen, setIsOpen);
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className={containerClassName}>
       {cloneComponent(trigger, triggerProps)}
-      {hideChildren
-        ? cloneComponent(menu, menuProps)
-        : isOpen && cloneComponent(menu, menuProps)}
+      {cloneComponent(content, menuProps)}
     </div>
   );
 };
-
-export default MenuDropdown;

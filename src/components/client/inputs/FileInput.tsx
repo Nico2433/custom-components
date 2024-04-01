@@ -1,8 +1,8 @@
-import type { Input } from "@/@types";
+import type { InputComponent } from "@/@types";
 import { clsx } from "clsx/lite";
 import { useRef } from "react";
 
-export const FileInput: React.FC<Readonly<Input>> = ({
+export const FileInput: React.FC<Readonly<InputComponent>> = ({
   config,
   errors,
   register,

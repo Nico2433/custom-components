@@ -5,7 +5,7 @@ import type {
 } from "react-hook-form";
 import type { InputConfig } from ".";
 
-export interface Input {
+export interface InputComponent {
   config: InputConfig;
   errors?: FieldErrors<FieldValues>;
   register: UseFormRegister<any>;
