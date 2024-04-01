@@ -5,7 +5,7 @@ import type { Control } from "react-hook-form";
 import { Controller } from "react-hook-form";
 
 interface FileDropInput extends Omit<Input, "register"> {
-  control: Control;
+  control: Control<any>;
 }
 
 export const FileDropInput: React.FC<Readonly<FileDropInput>> = ({

@@ -8,7 +8,7 @@ import type { InputConfig } from ".";
 export interface Input {
   config: InputConfig;
   errors?: FieldErrors<FieldValues>;
-  register: UseFormRegister<FieldValues>;
+  register: UseFormRegister<any>;
   className?: string;
   inputClassName?: string;
   errorClassName?: string;
