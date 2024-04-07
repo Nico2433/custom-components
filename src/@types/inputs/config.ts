@@ -1,6 +1,12 @@
 import type { RegisterOptions } from "react-hook-form";
 
-export type InputType = "text" | "password" | "select" | "file" | "date";
+export type InputType =
+  | "text"
+  | "password"
+  | "textArea"
+  | "select"
+  | "file"
+  | "date";
 
 export interface SelectInputOptions {
   label: string;
