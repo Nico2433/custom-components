@@ -13,5 +13,6 @@ type Story = StoryObj<FileInputStory>;
 export const Primary: Story = {
   args: {
     fileDrop: false,
+    multiple: true,
   },
 };

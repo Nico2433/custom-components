@@ -5,9 +5,13 @@ import { useForm, type FieldValues } from "react-hook-form";
 
 interface FileInputStory {
   fileDrop?: boolean;
+  multiple?: boolean;
 }
 
-const FileInputStory: React.FC<Readonly<FileInputStory>> = ({ fileDrop }) => {
+const FileInputStory: React.FC<Readonly<FileInputStory>> = ({
+  fileDrop,
+  multiple,
+}) => {
   const {
     register,
     handleSubmit,
@@ -15,19 +19,20 @@ const FileInputStory: React.FC<Readonly<FileInputStory>> = ({ fileDrop }) => {
     formState: { errors },
   } = useForm();
 
-  const [preview, setPreview] = useState<File | null>(null);
+  const [preview, setPreview] = useState<File[] | null>(null);
 
   const config: InputConfig = {
     name: "fileInput",
     label: "File Input",
     placeholder: "Select a file",
     registerOptions: { required: "This field is required" },
+    multiple,
   };
 
   const onSubmit = (values: FieldValues) => {
     const fileInput: File[] = values.fileInput;
 
-    setPreview(fileInput[0]);
+    setPreview(fileInput);
   };
 
   return (
@@ -55,7 +60,9 @@ const FileInputStory: React.FC<Readonly<FileInputStory>> = ({ fileDrop }) => {
             />
           )}
 
-          {preview && <p>{preview.name}</p>}
+          <div className="flex flex-col items-center gap-2">
+            {preview && preview.map(({ name }) => <p>{name}</p>)}
+          </div>
           <button className="bg-blue-500 rounded py-1 px-2 hover:opacity-50">
             Submit
           </button>

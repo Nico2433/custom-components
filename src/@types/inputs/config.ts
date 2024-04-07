@@ -21,4 +21,5 @@ export interface InputConfig {
     onClick: (arg?: any) => any;
   };
   selectOptions?: SelectInputOptions[];
+  multiple?: boolean;
 }

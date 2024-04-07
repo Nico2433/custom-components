@@ -10,7 +10,7 @@ export const FileInput: React.FC<Readonly<InputComponent>> = ({
   inputClassName,
   errorClassName,
 }) => {
-  const { label, name, registerOptions, placeholder } = config;
+  const { label, name, registerOptions, placeholder, multiple } = config;
 
   const fileRef = useRef<HTMLInputElement | null>(null);
   const { ref, ...rest } = register(name, registerOptions);
@@ -34,6 +34,7 @@ export const FileInput: React.FC<Readonly<InputComponent>> = ({
       {label}
       <input
         type="file"
+        multiple={multiple}
         ref={(e) => {
           ref(e);
           fileRef.current = e;

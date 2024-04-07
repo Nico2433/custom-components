@@ -16,7 +16,7 @@ export const FileDropInput: React.FC<Readonly<FileDropInput>> = ({
   inputClassName,
   errorClassName,
 }) => {
-  const { label, name, placeholder, registerOptions } = config;
+  const { label, name, placeholder, registerOptions, multiple } = config;
 
   const error = errors && errors[name];
 
@@ -42,6 +42,7 @@ export const FileDropInput: React.FC<Readonly<FileDropInput>> = ({
         render={({ field: { onChange } }) => (
           <Dropzone
             placeholder={placeholder}
+            multiple={multiple}
             onDrop={(e) => {
               e.preventDefault();
 
@@ -77,6 +78,7 @@ interface DropzoneProps {
   className?: string;
   onDrop: (e: DragEvent<HTMLInputElement>) => unknown;
   onChange: (e: ChangeEvent<HTMLInputElement>) => unknown;
+  multiple?: boolean;
 }
 
 const Dropzone: React.FC<DropzoneProps> = ({
@@ -84,6 +86,7 @@ const Dropzone: React.FC<DropzoneProps> = ({
   className,
   onDrop,
   onChange,
+  multiple,
 }) => {
   const onDrag = (e: DragEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -97,7 +100,13 @@ const Dropzone: React.FC<DropzoneProps> = ({
       onDragLeave={onDrag}
     >
       <p>{placeholder}</p>
-      <input type="file" tabIndex={-1} className="hidden" onChange={onChange} />
+      <input
+        type="file"
+        tabIndex={-1}
+        className="hidden"
+        onChange={onChange}
+        multiple={multiple}
+      />
     </div>
   );
 };
