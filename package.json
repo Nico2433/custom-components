@@ -3,7 +3,7 @@
   "author": "nico2433",
   "license": "MIT",
   "description": "Custom components package for personal FrontEnd projects",
-  "version": "1.0.43",
+  "version": "1.0.44",
   "type": "module",
   "files": [
     "dist"
