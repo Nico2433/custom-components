@@ -18,7 +18,7 @@ const MenuDropdownStory: React.FC<MenuDropdownStory> = ({
           renderTrigger={() => <button>Test</button>}
           renderContent={(isOpen, setIsOpen) => (
             <div
-              className={`${isOpen ? "block" : "hidden"} h-screen w-1/4 bg-red-500 left-0 top-0`}
+              className={`${isOpen ? "block" : "hidden"} fixed h-screen w-1/4 bg-red-500 left-0 top-0`}
             >
               <button onClick={() => setIsOpen(false)}>Close</button>
               <p className="mt-5">Menu</p>
