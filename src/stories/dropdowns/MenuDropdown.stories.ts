@@ -13,5 +13,6 @@ type Story = StoryObj<MenuDropdownStory>;
 export const Primary: Story = {
   args: {
     autoClose: true,
+    blockScroll: false,
   },
 };

@@ -2,14 +2,19 @@ import { DocDelimiter, MenuDropdown } from "@/components";
 
 interface MenuDropdownStory {
   autoClose: boolean;
+  blockScroll: boolean;
 }
 
-const MenuDropdownStory: React.FC<MenuDropdownStory> = ({ autoClose }) => {
+const MenuDropdownStory: React.FC<MenuDropdownStory> = ({
+  autoClose,
+  blockScroll,
+}) => {
   return (
     <DocDelimiter>
       <div className="flex items-center justify-center min-h-screen">
         <MenuDropdown
           autoClose={autoClose}
+          blockScroll={blockScroll}
           renderTrigger={() => <button>Test</button>}
           renderContent={(isOpen, setIsOpen) => (
             <div

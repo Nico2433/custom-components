@@ -8,6 +8,7 @@ interface Props extends DropdownComponent {
     isOpen: boolean,
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   ) => React.ReactNode;
+  blockScroll?: boolean;
 }
 
 export const MenuDropdown: React.FC<Readonly<Props>> = ({
@@ -15,6 +16,7 @@ export const MenuDropdown: React.FC<Readonly<Props>> = ({
   renderContent,
   className,
   autoClose,
+  blockScroll,
 }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -36,6 +38,16 @@ export const MenuDropdown: React.FC<Readonly<Props>> = ({
       };
     }
   }, [autoClose]);
+
+  React.useEffect(() => {
+    if (blockScroll) {
+      if (isOpen) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "auto";
+      }
+    }
+  }, [isOpen, blockScroll]);
 
   const triggerProps = {
     onClick: () => setIsOpen((prev) => !prev),
