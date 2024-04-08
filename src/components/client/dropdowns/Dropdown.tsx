@@ -6,6 +6,7 @@ import React from "react";
 interface Props extends DropdownComponent {
   renderContent: (isOpen: boolean) => React.ReactNode;
   position?: DropdownPosition;
+  noAbsolute?: boolean;
 }
 
 export const Dropdown: React.FC<Readonly<Props>> = ({
@@ -14,6 +15,7 @@ export const Dropdown: React.FC<Readonly<Props>> = ({
   className,
   autoClose,
   position = "bottom",
+  noAbsolute,
 }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -42,7 +44,7 @@ export const Dropdown: React.FC<Readonly<Props>> = ({
 
   const contentProps = {
     className: clsx(
-      "absolute",
+      !noAbsolute && "absolute",
       position === "bottom" || position === "top"
         ? position === "bottom"
           ? "top-full"

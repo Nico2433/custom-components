@@ -13,6 +13,7 @@ type Story = StoryObj<DropdownStory>;
 export const Primary: Story = {
   args: {
     autoClose: true,
+    noAbsolute: false,
     position: "bottom",
   },
 };

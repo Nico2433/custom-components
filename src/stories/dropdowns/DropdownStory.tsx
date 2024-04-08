@@ -2,17 +2,23 @@ import type { DropdownPosition } from "@/@types";
 import { DocDelimiter, Dropdown } from "@/components";
 
 interface DropdownStory {
-  autoClose: boolean;
   position: DropdownPosition;
+  autoClose: boolean;
+  noAbsolute: boolean;
 }
 
-const DropdownStory: React.FC<DropdownStory> = ({ autoClose, position }) => {
+const DropdownStory: React.FC<DropdownStory> = ({
+  position,
+  autoClose,
+  noAbsolute,
+}) => {
   return (
     <DocDelimiter>
       <div className="flex items-center justify-center min-h-screen">
         <Dropdown
-          autoClose={autoClose}
           position={position}
+          autoClose={autoClose}
+          noAbsolute={noAbsolute}
           renderTrigger={() => {
             return (
               <button className="bg-red-500 px-4 py-2 rounded hover:opacity-75">
