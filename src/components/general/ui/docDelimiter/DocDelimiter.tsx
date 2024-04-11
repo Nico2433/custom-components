@@ -7,6 +7,7 @@ import { getDocLimits, type DocDelLimit } from "./limits";
 
 interface Props {
   as?: React.ElementType;
+  ref?: React.MutableRefObject<any>;
   className?: string;
   hide?: boolean;
   hideMobile?: boolean;
@@ -17,6 +18,7 @@ interface Props {
 
 export const DocDelimiter: React.FC<Readonly<Props>> = ({
   as: Element = "div",
+  ref,
   className,
   hide,
   hideMobile,
@@ -41,7 +43,7 @@ export const DocDelimiter: React.FC<Readonly<Props>> = ({
   );
 
   return (
-    <Element className={elementClassNames}>
+    <Element ref={ref} className={elementClassNames}>
       {React.Children.map(children, (child) =>
         cloneComponent(child, childProps)
       )}
