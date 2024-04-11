@@ -7,7 +7,7 @@ import { getDocLimits, type DocDelLimit } from "./limits";
 
 interface Props {
   as?: React.ElementType;
-  ref?: React.MutableRefObject<any>;
+  reference?: React.MutableRefObject<any>;
   className?: string;
   hide?: boolean;
   hideMobile?: boolean;
@@ -18,7 +18,7 @@ interface Props {
 
 export const DocDelimiter: React.FC<Readonly<Props>> = ({
   as: Element = "div",
-  ref,
+  reference: ref,
   className,
   hide,
   hideMobile,
