@@ -1,17 +1,9 @@
-import type { DropdownComponent } from "@/@types";
+import type { DropdownMenuComponent } from "@/@types";
 import { cloneComponent } from "@/utils";
 import clsx from "clsx/lite";
-import React from "react";
+import React, { useRef } from "react";
 
-interface Props extends DropdownComponent {
-  renderContent: (
-    isOpen: boolean,
-    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-  ) => React.ReactNode;
-  blockScroll?: boolean;
-}
-
-export const MenuDropdown: React.FC<Readonly<Props>> = ({
+export const MenuDropdown: React.FC<Readonly<DropdownMenuComponent>> = ({
   renderTrigger,
   renderContent,
   className,
@@ -20,6 +12,7 @@ export const MenuDropdown: React.FC<Readonly<Props>> = ({
 }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const listenerActive = useRef<boolean>(false);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (
@@ -31,15 +24,14 @@ export const MenuDropdown: React.FC<Readonly<Props>> = ({
   };
 
   React.useEffect(() => {
-    if (autoClose) {
+    if (autoClose && !listenerActive.current) {
       document.addEventListener("click", handleClickOutside);
+      listenerActive.current = true;
       return () => {
         document.removeEventListener("click", handleClickOutside);
       };
     }
-  }, [autoClose]);
 
-  React.useEffect(() => {
     if (blockScroll) {
       if (isOpen) {
         document.body.style.overflow = "hidden";
@@ -47,7 +39,7 @@ export const MenuDropdown: React.FC<Readonly<Props>> = ({
         document.body.style.overflow = "auto";
       }
     }
-  }, [isOpen, blockScroll]);
+  }, [isOpen, blockScroll, autoClose]);
 
   const triggerProps = {
     onClick: () => setIsOpen((prev) => !prev),

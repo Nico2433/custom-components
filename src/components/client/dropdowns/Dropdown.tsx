@@ -1,15 +1,9 @@
-import type { DropdownComponent, DropdownPosition } from "@/@types";
+import type { DropdownComponent } from "@/@types";
 import { cloneComponent } from "@/utils";
 import clsx from "clsx/lite";
 import React from "react";
 
-interface Props extends DropdownComponent {
-  renderContent: (isOpen: boolean) => React.ReactNode;
-  position?: DropdownPosition;
-  noAbsolute?: boolean;
-}
-
-export const Dropdown: React.FC<Readonly<Props>> = ({
+export const Dropdown: React.FC<Readonly<DropdownComponent>> = ({
   renderTrigger,
   renderContent,
   className,
