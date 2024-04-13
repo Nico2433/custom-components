@@ -1,17 +1,9 @@
-import type { DropdownComponent } from "@/@types";
+import type { DropdownMenuComponent } from "@/@types";
 import { cloneComponent } from "@/utils";
 import clsx from "clsx/lite";
 import React from "react";
 
-interface Props extends DropdownComponent {
-  renderContent: (
-    isOpen: boolean,
-    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
-  ) => React.ReactNode;
-  blockScroll?: boolean;
-}
-
-export const MenuDropdown: React.FC<Readonly<Props>> = ({
+export const MenuDropdown: React.FC<Readonly<DropdownMenuComponent>> = ({
   renderTrigger,
   renderContent,
   className,
@@ -37,9 +29,7 @@ export const MenuDropdown: React.FC<Readonly<Props>> = ({
         document.removeEventListener("click", handleClickOutside);
       };
     }
-  }, [autoClose]);
 
-  React.useEffect(() => {
     if (blockScroll) {
       if (isOpen) {
         document.body.style.overflow = "hidden";
@@ -47,7 +37,7 @@ export const MenuDropdown: React.FC<Readonly<Props>> = ({
         document.body.style.overflow = "auto";
       }
     }
-  }, [isOpen, blockScroll]);
+  }, [isOpen, blockScroll, autoClose]);
 
   const triggerProps = {
     onClick: () => setIsOpen((prev) => !prev),
