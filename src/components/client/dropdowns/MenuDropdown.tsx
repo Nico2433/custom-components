@@ -1,7 +1,7 @@
 import type { DropdownMenuComponent } from "@/@types";
 import { cloneComponent } from "@/utils";
 import clsx from "clsx/lite";
-import React from "react";
+import React, { useRef } from "react";
 
 export const MenuDropdown: React.FC<Readonly<DropdownMenuComponent>> = ({
   renderTrigger,
@@ -12,6 +12,7 @@ export const MenuDropdown: React.FC<Readonly<DropdownMenuComponent>> = ({
 }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const listenerActive = useRef<boolean>(false);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (
@@ -23,8 +24,9 @@ export const MenuDropdown: React.FC<Readonly<DropdownMenuComponent>> = ({
   };
 
   React.useEffect(() => {
-    if (autoClose) {
+    if (autoClose && !listenerActive.current) {
       document.addEventListener("click", handleClickOutside);
+      listenerActive.current = true;
       return () => {
         document.removeEventListener("click", handleClickOutside);
       };
