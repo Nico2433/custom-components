@@ -5,45 +5,32 @@ import { getDocLimits, type DocDelLimit } from "./limits";
 
 // *-------- THIS COMPONENT LIMITS PAGE BORDERS AND CENTERS CONTENT --------* //
 
-interface Props {
-  as?: React.ElementType;
-  reference?: React.MutableRefObject<any>;
-  className?: string;
-  hide?: boolean;
-  hideMobile?: boolean;
-  hideDesktop?: boolean;
+interface Props<T = React.ElementType>
+  extends Omit<React.DetailedHTMLProps<React.HTMLAttributes<T>, T>, "ref"> {
+  as?: T;
   limits?: DocDelLimit;
-  children: React.ReactNode;
+  innerRef?: React.RefObject<T>;
 }
 
 export const DocDelimiter: React.FC<Readonly<Props>> = ({
   as: Element = "div",
-  reference: ref,
-  className,
-  hide,
-  hideMobile,
-  hideDesktop,
   limits = "full",
+  innerRef,
+  className,
   children,
+  ...rest
 }) => {
   const childProps = {
     className: "container",
   };
 
   const elementClassNames = clsx(
-    hide
-      ? "hidden"
-      : hideMobile || hideDesktop
-        ? hideMobile
-          ? "hidden lg:flex"
-          : "flex lg:hidden"
-        : "flex",
-    `flex-col items-center mx-auto w-full ${getDocLimits(limits)}`,
+    `flex flex-col items-center mx-auto w-full ${getDocLimits(limits)}`,
     className
   );
 
   return (
-    <Element ref={ref} className={elementClassNames}>
+    <Element ref={innerRef} className={elementClassNames} {...rest}>
       {React.Children.map(children, (child) =>
         cloneComponent(child, childProps)
       )}
