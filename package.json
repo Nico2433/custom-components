@@ -14,15 +14,25 @@
       "require": "./dist/index.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./client": {
+    "./components/client": {
       "import": "./dist/components/client/index.js",
       "require": "./dist/components/client/index.cjs",
       "types": "./dist/components/client/index.d.ts"
     },
-    "./general": {
+    "./components/general": {
       "import": "./dist/components/general/index.js",
       "require": "./dist/components/general/index.cjs",
       "types": "./dist/components/general/index.d.ts"
+    },
+    "./hooks": {
+      "import": "./dist/hooks/index.js",
+      "require": "./dist/hooks/index.cjs",
+      "types": "./dist/hooks/index.d.ts"
+    },
+    "./utils": {
+      "import": "./dist/utils/index.js",
+      "require": "./dist/utils/index.cjs",
+      "types": "./dist/utils/index.d.ts"
     },
     "./index.css": "./dist/index.css"
   },
